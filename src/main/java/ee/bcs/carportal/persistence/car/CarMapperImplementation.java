@@ -18,9 +18,6 @@ public class CarMapperImplementation {
     }
 
     private String carManufacturerName(Car car) {
-        if (car.getManufacturer() == null) {
-            return null;
-        }
-        return car.getManufacturer().getName();
+        return (car == null) ? null : car.getManufacturer().getName();
     }
 }

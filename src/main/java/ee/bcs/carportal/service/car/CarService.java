@@ -16,13 +16,15 @@ public class CarService {
     private final CarRepository carRepository;
     private final CarMapperImplementation carMapper;
 
+
     public CarInfo findCarInfo(Integer carId) {
         Car car = carRepository.getReferenceById(carId);
         return carMapper.toCarInfo(car);
     }
 
-    public List<Car> getAllCars() {
-        return carRepository.findAll();
+    public List<CarInfo> getAllCars() {
+        List<Car> cars = carRepository.findAll();
+        return carMapper.toCarInfos(cars);
     }
 
     public List<Car> findCarsInPriceRange(Integer from, Integer to) {

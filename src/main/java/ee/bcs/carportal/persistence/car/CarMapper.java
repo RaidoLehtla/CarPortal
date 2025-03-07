@@ -13,7 +13,7 @@ public interface CarMapper {
 
     @Mapping(source = "manufacturer.name", target = "make")
     @Mapping(source = "model", target = "modelName")
-    @Mapping(source = "year", target = "releaseYear")
+    @Mapping(source = "year", target = "")
 
 
     CarInfo toCarInfo(Car car);

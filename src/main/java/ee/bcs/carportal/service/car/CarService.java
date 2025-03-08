@@ -2,8 +2,14 @@ package ee.bcs.carportal.service.car;
 
 import ee.bcs.carportal.persistence.car.Car;
 import ee.bcs.carportal.persistence.car.CarMapper;
-import ee.bcs.carportal.repository.car.CarRepository;
+import ee.bcs.carportal.persistence.car.CarRepository;
+import ee.bcs.carportal.persistence.fueltype.FuelType;
+import ee.bcs.carportal.persistence.fueltype.FuelTypeRepository;
+import ee.bcs.carportal.persistence.manufacturer.Manufacturer;
+import ee.bcs.carportal.persistence.manufacturer.ManufacturerRepository;
+import ee.bcs.carportal.service.car.dto.CarDto;
 import ee.bcs.carportal.service.car.dto.CarInfo;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +20,8 @@ import java.util.List;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final ManufacturerRepository manufacturerRepository;
+    private final FuelTypeRepository fuelTypeRepository;
     private final CarMapper carMapper;
 
 
@@ -35,4 +43,13 @@ public class CarService {
         return carRepository.findCarsBy(from, to, fuelTypeCode);
     }
 
+    public void addCar(CarDto carDto) {
+        Manufacturer manufacturer = manufacturerRepository.findById(carDto.getManufacturerId()).orElse(null);
+        FuelType fuelType = fuelTypeRepository.findById(carDto.getFuelTypeId()).orElse(null);
+
+        Car car = carMapper.toCar(carDto);
+        car.setManufacturer(manufacturer);
+        car.setFuelType(fuelType);
+        carRepository.save(car);
+    }
 }

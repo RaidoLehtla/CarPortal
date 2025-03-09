@@ -46,4 +46,9 @@ public class CarController {
     public CarDetailedInfo findCarDetailedInfo(@PathVariable Integer carId) {
         return carService.findCarDetailedInfo(carId);
     }
+
+    @PutMapping("/car/{carId}")
+    public void updateCar(@PathVariable Integer carId, @RequestBody CarDto carDto) {
+        carService.updateCar(carId, carDto);
+    }
 }

@@ -60,4 +60,19 @@ public class CarService {
 
         return carMapper.toCarDetailedInfo(car);
     }
+
+    public void updateCar(Integer carId, CarDto carDto) {
+        Car car = carRepository.getReferenceById(carId);
+        carMapper.updateCar(carDto, car);
+        if (!car.getManufacturer().getId().equals((carDto.getManufacturerId()))) {
+            Manufacturer manufacturer = manufacturerRepository.getReferenceById(carDto.getManufacturerId());
+            car.setManufacturer(manufacturer);
+        }
+        if (!car.getFuelType().getId().equals(carDto.getFuelTypeId())) {
+            FuelType fuelType = fuelTypeRepository.getReferenceById(carDto.getFuelTypeId());
+            car.setFuelType(fuelType);
+        }
+        carRepository.save(car);
+    }
 }
+

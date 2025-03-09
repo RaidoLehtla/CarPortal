@@ -1,11 +1,9 @@
 package ee.bcs.carportal.persistence.car;
 
+import ee.bcs.carportal.service.car.dto.CarDetailedInfo;
 import ee.bcs.carportal.service.car.dto.CarDto;
 import ee.bcs.carportal.service.car.dto.CarInfo;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -15,8 +13,15 @@ public interface CarMapper {
     @Mapping(source = "manufacturer.name", target = "make")
     @Mapping(source = "model", target = "modelName")
     @Mapping(source = "year", target = "releaseYear")
-
     CarInfo toCarInfo(Car car);
+
     List<CarInfo> toCarInfos(List<Car> cars);
     Car toCar(CarDto cardto);
+    @Mapping(source = "manufacturer.name", target = "make")
+    @Mapping(source = "model", target = "modelName")
+    @Mapping(source = "year", target = "releaseYear")
+    @Mapping(source = "fuelType.name", target = "fuelTypeName")
+    @Mapping(source = "emissions", target = "emissions")
+    @Mapping(source = "price", target = "price")
+    CarDetailedInfo toCarDetailedInfo(Car car);
 }

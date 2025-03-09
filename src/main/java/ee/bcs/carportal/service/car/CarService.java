@@ -7,6 +7,7 @@ import ee.bcs.carportal.persistence.fueltype.FuelType;
 import ee.bcs.carportal.persistence.fueltype.FuelTypeRepository;
 import ee.bcs.carportal.persistence.manufacturer.Manufacturer;
 import ee.bcs.carportal.persistence.manufacturer.ManufacturerRepository;
+import ee.bcs.carportal.service.car.dto.CarDetailedInfo;
 import ee.bcs.carportal.service.car.dto.CarDto;
 import ee.bcs.carportal.service.car.dto.CarInfo;
 import jakarta.transaction.Transactional;
@@ -51,5 +52,12 @@ public class CarService {
         car.setManufacturer(manufacturer);
         car.setFuelType(fuelType);
         carRepository.save(car);
+    }
+
+    public CarDetailedInfo findCarDetailedInfo(Integer carId) {
+        Car car = carRepository.findById(carId)
+                .orElseThrow(() -> new RuntimeException("Car not found with id: " + carId));
+
+        return carMapper.toCarDetailedInfo(car);
     }
 }

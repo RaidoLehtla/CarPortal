@@ -5,6 +5,7 @@ import ee.bcs.carportal.service.car.CarService;
 import ee.bcs.carportal.service.car.dto.CarDetailedInfo;
 import ee.bcs.carportal.service.car.dto.CarDto;
 import ee.bcs.carportal.service.car.dto.CarInfo;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,5 +51,10 @@ public class CarController {
     @PutMapping("/car/{carId}")
     public void updateCar(@PathVariable Integer carId, @RequestBody CarDto carDto) {
         carService.updateCar(carId, carDto);
+    }
+
+    @DeleteMapping("/car/{carId}")
+    public void deleteCar(@PathVariable Integer carId) {
+        carService.deleteCar(carId);
     }
 }

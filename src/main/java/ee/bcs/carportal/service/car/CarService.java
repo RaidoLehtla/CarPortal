@@ -72,5 +72,9 @@ public class CarService {
         }
         carRepository.save(car);
     }
+
+    public void deleteCar(Integer carId) {
+        carRepository.deleteById(carId);
+    }
 }
 

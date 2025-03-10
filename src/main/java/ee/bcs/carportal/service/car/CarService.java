@@ -77,10 +77,11 @@ public class CarService {
     }
 
     public void deleteCar(Integer carId) {
-        if (!carRepository.existsById(carId)) {
-            throw new ResourceNotFoundException("Resource not found");
-        }
+            Car car = carRepository
+                    .findById(carId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Resource not found"));
         carRepository.deleteById(carId);
     }
 }
+
 

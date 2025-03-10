@@ -51,7 +51,6 @@ public class CarService {
         }
         Manufacturer manufacturer = manufacturerRepository.findById(carDto.getManufacturerId()).orElse(null);
         FuelType fuelType = fuelTypeRepository.findById(carDto.getFuelTypeId()).orElse(null);
-
         Car car = carMapper.toCar(carDto);
         car.setManufacturer(manufacturer);
         car.setFuelType(fuelType);

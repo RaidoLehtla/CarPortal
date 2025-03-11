@@ -6,6 +6,7 @@ import ee.bcs.carportal.service.car.dto.CarDetailedInfo;
 import ee.bcs.carportal.service.car.dto.CarDto;
 import ee.bcs.carportal.service.car.dto.CarInfo;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,7 @@ public class CarController {
     }
 
     @PostMapping("/car")
-    public void addCar(@RequestBody CarDto carDto) {
+    public void addCar(@RequestBody @Valid CarDto carDto) {
         carService.addCar(carDto);
     }
 
@@ -49,7 +50,7 @@ public class CarController {
     }
 
     @PutMapping("/car/{carId}")
-    public void updateCar(@PathVariable Integer carId, @RequestBody CarDto carDto) {
+    public void updateCar(@PathVariable Integer carId, @RequestBody @Valid CarDto carDto) {
         carService.updateCar(carId, carDto);
     }
 

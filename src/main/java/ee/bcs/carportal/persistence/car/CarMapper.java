@@ -18,7 +18,7 @@ public interface CarMapper {
     @Mapping(source = "manufacturer.name", target = "make")
     @Mapping(source = "model", target = "modelName")
     @Mapping(source = "year", target = "releaseYear")
-    @Mapping(source = "fuelType.name", target = "fuelTypeName")
+    @Mapping(source = "fuelType.name", target = "fuelType")
     @Mapping(source = "emissions", target = "emissions")
     @Mapping(source = "price", target = "price")
     CarDetailedInfo toCarDetailedInfo(Car car);

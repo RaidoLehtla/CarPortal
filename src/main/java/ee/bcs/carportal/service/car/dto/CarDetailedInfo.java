@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class CarDetailedInfo extends CarInfo implements Serializable {
-    private String fuelTypeName;
+    private String fuelType;
     @NotNull
     private BigDecimal emissions;
     @NotNull

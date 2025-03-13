@@ -1,6 +1,5 @@
 package ee.bcs.carportal.service.car.dto;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,8 +17,6 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 public class CarDetailedInfo extends CarInfo implements Serializable {
     private String fuelType;
-    @NotNull
     private BigDecimal emissions;
-    @NotNull
     private Integer price;
 }

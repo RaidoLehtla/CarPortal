@@ -84,7 +84,6 @@ public class CarController {
         return carService.findCarsInPriceRangeWithFuelType(from, to, fuelTypeCode);
     }
 
-
     @PutMapping("/car/{carId}")
     @Operation(summary = "Updates car details", description = "Modifies an existing car record identified by carId with new data")
     @ApiResponses({

@@ -47,5 +47,4 @@ public class Car {
     @NotNull
     @Column(name = "price", nullable = false)
     private Integer price;
-
 }
